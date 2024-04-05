@@ -53,6 +53,40 @@
   or you can build an specific package:
   `colcon build --packages-select my_cpp_pkg`
 
+### Clangd setup
+
+In order to use Clangd as language server instead of VScode Intellisense, do the following:
+
+1. Install the Clangd extension in VSCode. If you don't have clangd installed in your OS it will
+suggest the installation.
+
+2. Open your settings.json: 
+  `ctrl + shift + P` > Preferences: Open User Settings (JSON)
+  Or if you are using ssh-server for remote IDE
+  `ctrl + shift + P` > Preferences: Open Remote Settings (JSON)
+
+3. Add the following configuration:
+```
+"clangd.arguments": [
+    "-log=verbose",
+    "-pretty",
+    "--background-index",
+    "--query-driver=/**/*",
+    "--compile-commands-dir=${workspaceFolder}/build"
+  ],
+```
+4. Add the flag `CMAKE_EXPORT_COMPILE_COMMANDS` to your CMakeLists.txt in order to generate the
+compile_commands.json file required by clangd
+```
+set (CMAKE_EXPORT_COMPILE_COMMANDS ON)
+```
+NOTE: Here you must have the executables added (add_executable and install) to your CMakeLists.
+
+5. Build the package: `colcon build --packages-select my_cpp_pkg`
+
+6. Restart you language server:
+`ctrl + shift + P` > clangd: Restart language server
+
 ## Create executable to be installed (Python) 
 
 1. Open the setup.py file of the package
