@@ -106,8 +106,19 @@ ros2 run PACKAGE_NAME NODE_EXECUTABLE_NAME
 Ex.
 `ros2 run my_py_pkg py_node`
 
-## Common ROS Node Functions
+## List and info running nodes
+`ros2 node list` and `ros2 node info NODE_NAME`
+
+NOTE: This only give information for running nodes.
+
+## Common ROS Python Node Functions
 
 ### crate_timer(period, callback)
+
+This will create a timer where a callback will be called every given period.
+
+## Common ROS CPP Node Functions
+
+### create_wall_timer(period, callback)
 
 This will create a timer where a callback will be called every given period.
