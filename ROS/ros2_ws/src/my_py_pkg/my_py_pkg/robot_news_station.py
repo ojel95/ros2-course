@@ -9,7 +9,7 @@ class RobotNewsStationNode(Node):
     def __init__(self):
         super().__init__("robot_news_station")
 
-        self.robot_name = 'R2D2'
+        self.robot_name = 'PyRobot'
         self.publisher_ = self.create_publisher(String, "robot_news", 10)
         self.timer_ = self.create_timer(0.5, self.publish_news)
         self.get_logger().info("Robot News Station has been started.")
