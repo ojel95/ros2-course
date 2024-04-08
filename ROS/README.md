@@ -87,7 +87,9 @@ NOTE: Here you must have the executables added (add_executable and install) to y
 6. Restart you language server:
 `ctrl + shift + P` > clangd: Restart language server
 
-## Create executable to be installed (Python) 
+## Nodes
+
+### Create executable to be installed (Python) 
 
 1. Open the setup.py file of the package
 2. Add to the 'console-scripts' the name of the executable and the entry point.
@@ -100,16 +102,31 @@ ros2_ws/install/my_py_pkg/lib/my_py_pkg/py_node
 
 3. Now you can build the pkg with: `colcon build --packages-select my_py_pkg`
 
-## Run an installed node
+NOTE: It is possible to symlink the executable in order to avoid recompilation after changes.
+The python file must have execution permits.
+
+  3.1 `chmod +x NODE_FILE_NAME.py`
+
+  3.2 `colcon build --packages-select my_py_pkg --symlink-install`
+
+### Create executable to be installed (Cpp)
+
+Check the CMakeLists.txt file of my_cpp_pkg. It includes the `add_executables` and `install` macros.
+
+### Run an installed node
 
 ros2 run PACKAGE_NAME NODE_EXECUTABLE_NAME
 Ex.
 `ros2 run my_py_pkg py_node`
 
-## List and info running nodes
+### List and info running nodes
 `ros2 node list` and `ros2 node info NODE_NAME`
 
 NOTE: This only give information for running nodes.
+
+### Launch same node multiple times
+
+`ros2 run my_py_pkg py_node --ros-args -r __node:=node2`
 
 ## Common ROS Python Node Functions
 
@@ -122,3 +139,53 @@ This will create a timer where a callback will be called every given period.
 ### create_wall_timer(period, callback)
 
 This will create a timer where a callback will be called every given period.
+
+## Interfaces
+
+For using already existing interfaces it is useful to use the example_interfaces provided by the lib.
+
+In this case we want to use a msg type for a new publisher.
+```
+ros2 interface show example_interfaces/msg/String 
+```
+
+In the case of python you need to add the dependency to package.xml
+```
+<depend>example_interfaces</depend>
+```
+
+## Topics
+
+You can list the topics using:
+`ros2 topic list`
+
+You can print what the topic is receiving like a subscriber:
+`ros2 topic echo \node-name`
+
+### Python
+#### Publisher
+```
+self.publisher_ = self.create_publisher(MSG_TYPE, TOPIC_NAME, QUEUE_SIZE)
+self.publisher_.publish(MSG_OBJECT)
+```
+
+
+
+## rqt and rqt_graph
+This is GUI framework tool that is used to debug and understand better your graph, node, services, etc
+Is a collection of pluggins that can be connected.
+
+```bash
+rqt
+```
+
+```bash
+rqt_graph
+```
+
+## Turtlesim
+It is a simulator package that allows you to interact with a graphic interface.
+
+
+
+
