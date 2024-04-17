@@ -156,11 +156,36 @@ In the case of python you need to add the dependency to package.xml
 
 ## Topics
 
-You can list the topics using:
+List the topics:
 `ros2 topic list`
 
-You can print what the topic is receiving like a subscriber:
+Print what the topic is receiving like a subscriber:
 `ros2 topic echo \node-name`
+
+Get info about the topic:
+`ros2 topic info /topic_name`
+
+Get running topic frequency:
+`ros2 topic hz /topic_name`
+
+Get running topic band width:
+`ros2 topic bw /topic_name`
+
+Publish directly to a topic:
+`ros2 topic pub -r 100 /topic_name example_interfaces/msg/String "{data: 'Hello'}"`
+Example:
+```
+ros2 topic pub -r 2 /robot_news example_interfaces/msg/String "{data: 'Hello'}"
+```
+
+Rename a topic in runtime:
+```
+ros2 run my_py_pkg robot_news_station --ros-args -r __node:=my_station -r robot_news:=my_news
+```
+or 
+```
+ros2 run my_py_pkg robot_news_station --ros-args -r robot_news:=my_news
+```
 
 ### Python
 #### Publisher
