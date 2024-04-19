@@ -1,10 +1,10 @@
 #include "rclcpp/rclcpp.hpp"
 
-class MyCustomNode : public rclcpp::Node // MODIFY NAME
+class NumberCounterNode : public rclcpp::Node // MODIFY NAME
 {
   public:
 
-    MyCustomNode()
+    NumberCounterNode()
     : Node("node_name") // MODIFY NAME
     {
     }
