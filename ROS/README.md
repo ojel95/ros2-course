@@ -194,6 +194,18 @@ self.publisher_ = self.create_publisher(MSG_TYPE, TOPIC_NAME, QUEUE_SIZE)
 self.publisher_.publish(MSG_OBJECT)
 ```
 
+## Services
+
+List the services:
+`ros2 service list`
+
+call service like a client:
+`ros2 service call <service_name> <srv_type> '<request_args>'`
+Example:
+```
+ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 2, b: 3}"
+```
+
 
 
 ## rqt and rqt_graph

@@ -4,3 +4,6 @@ build/
 install/
 log/
 .cache/
+
+# file extensions
+*.pyc
