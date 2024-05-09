@@ -16,7 +16,7 @@ class NumberCounterNode(Node):
 
     def increase_counter(self, msg):
         self.count_ += msg.data
-        print(f"New counter value: {self.count_}")
+        self.get_logger().info(str(self.count_))
         
         self.publish_counter()
 
