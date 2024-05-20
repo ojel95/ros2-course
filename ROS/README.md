@@ -206,7 +206,13 @@ Example:
 ros2 service call /add_two_ints example_interfaces/srv/AddTwoInts "{a: 2, b: 3}"
 ```
 
+get service interface type:
+`ros2 service type <service_name>`
 
+The service can be called using the rqt plugin "service caller". It allows you to call the service trough an interactive GUI.
+
+Remap the service in runtime:
+`ros2 run my_cpp_package <node_name> --ros-args -r <service_name>:=<new_service_name>`
 
 ## rqt and rqt_graph
 This is GUI framework tool that is used to debug and understand better your graph, node, services, etc
