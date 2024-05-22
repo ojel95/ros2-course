@@ -154,6 +154,8 @@ In the case of python you need to add the dependency to package.xml
 <depend>example_interfaces</depend>
 ```
 
+For available built-in-types check the [documentation](https://docs.ros.org/en/rolling/Concepts/Basic/About-Interfaces.html)
+
 ## Topics
 
 List the topics:
