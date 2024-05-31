@@ -156,6 +156,39 @@ In the case of python you need to add the dependency to package.xml
 
 For available built-in-types check the [documentation](https://docs.ros.org/en/rolling/Concepts/Basic/About-Interfaces.html)
 
+### Creating your custom interfaces
+
+1. It's a good practice to create the custom interfaces in a dedicated package
+```
+ros2 pkg create my_robot_interfaces
+```
+2. Remove src and include directories from created package.
+3. Create an msg folder in the package
+```
+mkdir msg
+```
+4. Add this 3 lines to the package.xml
+```
+  <build_depend>rosidl_default_generators</build_depend>
+  <exec_depend>rosidl_default_runtime</exec_depend>
+  <member_of_group>rosidl_interface_packages</member_of_group>
+```
+
+5. Add the find package to CMakeLists
+```
+find_package(rosidl_default_generators REQUIRED)
+```
+6. The file name needs to be in PascalCase and have msg extension. Ex. `HardwareStatus.msg`
+7. Add the types to your msg.
+8. Add functions to generate the interfaces and to export the dependencies in the CMakeLists
+```
+rosidl_generate_interfaces(${PROJECT_NAME}
+  "msg/HardwareStatus.msg"
+)
+
+ament_export_dependencies(rosidl_default_runtime)
+```
+
 ## Topics
 
 List the topics:
