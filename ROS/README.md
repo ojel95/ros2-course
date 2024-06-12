@@ -142,6 +142,14 @@ This will create a timer where a callback will be called every given period.
 
 ## Interfaces
 
+For available built-in-types check the [documentation](https://docs.ros.org/en/rolling/Concepts/Basic/About-Interfaces.html)
+
+- List all installed interfaces:
+`ros2 interface list`
+
+- Get information about specific interface:
+`ros2 interface show example_interfaces/msg/String`
+
 For using already existing interfaces it is useful to use the example_interfaces provided by the lib.
 
 In this case we want to use a msg type for a new publisher.
@@ -153,8 +161,6 @@ In the case of python you need to add the dependency to package.xml
 ```
 <depend>example_interfaces</depend>
 ```
-
-For available built-in-types check the [documentation](https://docs.ros.org/en/rolling/Concepts/Basic/About-Interfaces.html)
 
 ### Creating your custom interfaces
 
@@ -188,6 +194,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 
 ament_export_dependencies(rosidl_default_runtime)
 ```
+9. Built the interfaces package and you will get the interfaces for python and C++.
 
 ## Topics
 
@@ -220,13 +227,6 @@ ros2 run my_py_pkg robot_news_station --ros-args -r __node:=my_station -r robot_
 or 
 ```
 ros2 run my_py_pkg robot_news_station --ros-args -r robot_news:=my_news
-```
-
-### Python
-#### Publisher
-```
-self.publisher_ = self.create_publisher(MSG_TYPE, TOPIC_NAME, QUEUE_SIZE)
-self.publisher_.publish(MSG_OBJECT)
 ```
 
 ## Services
