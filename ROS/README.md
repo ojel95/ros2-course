@@ -249,6 +249,25 @@ The service can be called using the rqt plugin "service caller". It allows you t
 Remap the service in runtime:
 `ros2 run my_cpp_package <node_name> --ros-args -r <service_name>:=<new_service_name>`
 
+## Parameters
+
+- Configuration value for a node, usefull for any kind of setting needed. 
+- These are setted when starting the node or run-time.
+- A parmeter is specific to a node.
+- Has a name and a data type.
+
+List each node with its parameters:
+`ros2 param list`
+
+Get the current value of an specific parameter:
+`ros2 param get </node_name> <param_name>`
+
+Start a node setting a parameter value:
+`ros2 run <package_name> <node_name> --ros-args -p <param_name>:=<value>`
+
+For multiple parameters you only have to add more -p: 
+`ros2 run <package_name> <node_name> --ros-args -p <param1_name>:=<value> -p <param2_name>:=<value>`
+
 ## rqt and rqt_graph
 This is GUI framework tool that is used to debug and understand better your graph, node, services, etc
 Is a collection of pluggins that can be connected.
